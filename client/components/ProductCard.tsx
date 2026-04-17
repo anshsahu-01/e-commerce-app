@@ -13,7 +13,7 @@ export default function ProductCard({product}:ProductCardProps) {
     <Link href={`/product/${product._id}`} asChild>
         <TouchableOpacity className='w-[48%] mb-4 bg-white rounded-lg overflow-hidden'>
             <View className='relative h-56 w-full bg-grey-100'>
-                <Image source={{uri:product.images[0]}} className='w-full h-full' resizeMode='cover'/>
+                <Image source={{uri:product.images?.[0] ?? ''}} className='w-full h-full' resizeMode='cover'/>
                 {/* Favourite Icon */}
 
                 <TouchableOpacity className='absolute  top-2 right-2 z-10 p-2 bg-white rounded-full shadow-sm' onPress={(e)=>{

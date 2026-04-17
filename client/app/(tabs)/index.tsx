@@ -20,18 +20,18 @@ export default function Home() {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
 
-  const categories = [{id: 'all', name: 'All', icon:'grid'}, ...CATEGORIES]
+  const categories = [{ id: 'all', name: 'All', icon: 'grid' }, ...CATEGORIES]
 
 
-  const fetchProducts = async ()=>{
-    setProducts(dummyProducts) 
+  const fetchProducts = async () => {
+    setProducts(dummyProducts)
     setLoading(false)
   }
 
   useEffect(() => {
     fetchProducts()
   }, [])
-  
+
 
   return (
     <SafeAreaView className='flex-1' edges={['top']}>
@@ -55,6 +55,7 @@ export default function Home() {
             {BANNERS.map((banner, index) => (
               <View key={index} className='w-full relative h-48 bg-gray-200 overflow-hidden' style={{ width: width - 32 }}>
                 <Image source={{ uri: banner.image }} className='w-full h-full' resizeMode='cover' />
+                <View className='absolute inset-0 bg-black/40' />
                 <View className='absolute bottom-4 left-4 z-10'>
                   <Text className='text-white text-2xl font-bold'>{banner.title}</Text>
                   <Text className='text-white text-sm font-medium'>{banner.subtitle}</Text>
@@ -63,7 +64,7 @@ export default function Home() {
                   </TouchableOpacity>
 
                 </View>
-                <View className='absolute inset-0 bg-black/40' />
+
               </View>
             ))}
           </ScrollView>
@@ -82,34 +83,35 @@ export default function Home() {
           <View className='flex-row justify-between items-center mb-4 '>
             <Text className='text-xl font-bold text-primary'>Categories</Text>
           </View>
-        
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {categories.map((cat: any)=>(
-              <CategoryItem key={cat.id} item={cat} isSelected={false} onPress={()=> router.push({pathname:"/shop" , params:{category:cat.id === 'all' ? '': cat.name}
-              })}/>
+
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {categories.map((cat: any) => (
+              <CategoryItem key={cat.id} item={cat} isSelected={false} onPress={() => router.push({
+                pathname: "/shop", params: { category: cat.id === 'all' ? '' : cat.name }
+              })} />
             ))}
-        </ScrollView>
+          </ScrollView>
         </View>
 
         {/* Popular Products */}
 
         <View className='mb-8'>
-            <View className='flex-row justify-between items-center mb-4'>
-              <Text className='text-xl font-bold text-primary'>Popular Products</Text>
-              <TouchableOpacity className='' onPress={()=>router.push('/shop')}>
-                <Text className='text-secondary text-sm'>See All</Text>
-              </TouchableOpacity>
+          <View className='flex-row justify-between items-center mb-4'>
+            <Text className='text-xl font-bold text-primary'>Popular Products</Text>
+            <TouchableOpacity className='' onPress={() => router.push('/shop')}>
+              <Text className='text-secondary text-sm'>See All</Text>
+            </TouchableOpacity>
+          </View>
+          {loading ? (
+            <ActivityIndicator size='large' />
+          ) : (
+            <View className='flex-row flex-wrap justify-between'>
+              {products.slice(0, 4).map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
             </View>
-            {loading ? (
-              <ActivityIndicator size='large'/>
-            ) : (
-              <View className='flex-row flex-wrap justify-between'>
-                {products.slice(0,4).map((product)=>(
-                  <ProductCard key={product._id} product={product}/>
-                ))}
-              </View>
-            )}
+          )}
         </View>
 
         {/* Newsletter CTA */}
