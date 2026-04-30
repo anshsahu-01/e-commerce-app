@@ -16,6 +16,4 @@ export default function RootLayout() {
       </CartProvider>
     </GestureHandlerRootView>
   )
-  
-  
 }
