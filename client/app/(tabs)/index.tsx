@@ -62,12 +62,11 @@ export default function Home() {
                   <TouchableOpacity className='mt-2 bg-white px-4 py-2 rounded-full self-start'>
                     <Text className='text-primary font-bold text-xs'>Get Now</Text>
                   </TouchableOpacity>
-
                 </View>
-
               </View>
             ))}
           </ScrollView>
+
           {/* Pagination Dots */}
 
           <View className='flex-row justify-center mt-3 gap-2'>
@@ -81,9 +80,10 @@ export default function Home() {
 
         <View className='mb-6'>
           <View className='flex-row justify-between items-center mb-4 '>
-            <Text className='text-xl font-bold text-primary'>Categories</Text>
+            <Text className='text-xl font-bold text-primary'>
+              Categories
+            </Text>
           </View>
-
 
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {categories.map((cat: any) => (
