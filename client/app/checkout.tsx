@@ -15,6 +15,8 @@ export default function checkout() {
 
     const {cartTotal} = useCart()
     const router = useRouter()
+    const tax = cartTotal * 0.1;
+    const shipping = cartTotal > 100 ? 0 : 10;
 
     const [loading, setLoading] = useState(false)
     const [pageLoading, setPageLoading] = useState(true)
@@ -128,6 +130,43 @@ export default function checkout() {
             </TouchableOpacity>
 
         </ScrollView>
+
+        {/* Order Summary */}
+
+        <View className='p-4 bg-white shadow-lg border-t border-gray-100'>
+            <Text className='text-primary text-lg font-bold mb-4'>Order Summary</Text>
+
+            {/* Subtotal */}
+            <View className='flex-row justify-between mb-2'>
+                <Text className='text-secondary '>Subtotal</Text>
+                <Text className='font-bold'>${cartTotal.toFixed(2)}</Text>
+            </View>
+
+            {/* Shipping */}
+            <View className='flex-row justify-between mb-2'>
+                <Text className='text-secondary '>Shipping</Text>
+                <Text className='font-bold'>${shipping.toFixed(2)}</Text>
+            </View>
+
+            {/* Tax */}
+            <View className='flex-row justify-between mb-2'>
+                <Text className='text-secondary '>Tax</Text>
+                <Text className='font-bold'>${tax.toFixed(2)}</Text>
+            </View>
+
+            {/* Total */}
+            <View className='flex-row justify-between mb-2'>
+                <Text className='text-primary font-bold text-xl '>Tax</Text>
+                <Text className='text-primary font-bold text-xl'>${tax.toFixed(2)}</Text>
+            </View>
+
+            {/* Place Order Button */}
+            <TouchableOpacity
+            onPress={handlePlaceOrder} disabled={loading}
+            className={` rounded-xl p-4 mb-4 mt-2 items-center ${loading ? 'bg-gray-400' : 'bg-primary'}`}>
+                {loading ? <ActivityIndicator color={'white'} /> : <Text className='text-white font-bold text-xl'>Place Order</Text>}
+            </TouchableOpacity>
+        </View>
     </SafeAreaView>
   )
 }

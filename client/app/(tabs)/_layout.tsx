@@ -35,9 +35,7 @@ export default function TabLayout() {
                     <Feather name= {focused ? 'shopping-cart' : 'shopping-cart'} size={26} color={color} />
 
                     {cartItems?.length > 0 &&
-                    <View className='absolute -top-2 -right-2 bg-accent size-3 rounded-full items-center justify-center'>
-                        <Ionicons  name='ellipse' size={5} color={'white'}/>
-                    </View>
+                    <View className='absolute -top-2 -right-2 bg-accent size-3 rounded-full items-center justify-center'></View>
                     }
                 </View>
             )
