@@ -17,6 +17,7 @@ export default function checkout() {
     const router = useRouter()
     const tax = cartTotal * 0.1;
     const shipping = cartTotal > 100 ? 0 : 10;
+    const total = cartTotal + tax + shipping;
 
     const [loading, setLoading] = useState(false)
     const [pageLoading, setPageLoading] = useState(true)
@@ -157,13 +158,13 @@ export default function checkout() {
             {/* Total */}
             <View className='flex-row justify-between mb-2'>
                 <Text className='text-primary font-bold text-xl '>Tax</Text>
-                <Text className='text-primary font-bold text-xl'>${tax.toFixed(2)}</Text>
+                <Text className='text-primary font-bold text-xl'>${total.toFixed(2)}</Text>
             </View>
 
             {/* Place Order Button */}
             <TouchableOpacity
             onPress={handlePlaceOrder} disabled={loading}
-            className={` rounded-xl p-4 mb-4 mt-2 items-center ${loading ? 'bg-gray-400' : 'bg-primary'}`}>
+            className={` rounded-xl p-4 mb-4 mt-2 items-center ${loading ? 'bg-gray-100' : 'bg-primary'}`}>
                 {loading ? <ActivityIndicator color={'white'} /> : <Text className='text-white font-bold text-xl'>Place Order</Text>}
             </TouchableOpacity>
         </View>
