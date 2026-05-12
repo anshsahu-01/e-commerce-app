@@ -23,18 +23,18 @@ export default function AddProduct() {
 
     // PICK MULTIPLE IMAGES (MAX 5)
     const pickImages = async () => {
-        const result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsMultipleSelection: true,
-            selectionLimit: 5,
-            quality: 0.8,
-        });
+    const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsMultipleSelection: true,
+        selectionLimit: 5,
+        quality: 0.8,
+    });
 
-        if (!result.canceled) {
-            const uris = result.assets.map((asset) => asset.uri);
-            setImages(uris.slice(0, 5));
-        }
-    };
+    if (!result.canceled) {
+        const uris = result.assets.map((asset) => asset.uri);
+        setImages(uris.slice(0, 5));
+    }
+};
 
     // Add Product
     const handleSubmit = async () => {
